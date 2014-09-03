@@ -6,6 +6,7 @@ class EngineersController < ApplicationController
   def index
     @engineers = Engineer.where(rentee_id: params[:rentee_id])
     @rentee = Rentee.find(params[:rentee_id])
+    # @renteeId = Rentee.find(params[:tokens])
   end
 
   # GET /engineers/1
@@ -48,8 +49,28 @@ class EngineersController < ApplicationController
   # PATCH/PUT /engineers/1
   # PATCH/PUT /engineers/1.json
   def update
+    numTokens = params[:engineer][:tokens].to_i
+    puts "NUMBER OF TOKENS"
+    puts numTokens
+    engineerId = params[:id]
+    renteeId = params[:rentee_id]
+    engineerTokens = Engineer.find(engineerId).tokens
+
+    renteeTokens = Rentee.find(renteeId).tokens
+    puts "RENTEE TOKENS"
+    puts renteeTokens
+
+    if numTokens <= renteeTokens
+      renteeTokens = renteeTokens - numTokens
+      Rentee.update(renteeId, :tokens => renteeTokens)
+      engineerTokens = engineerTokens + numTokens
+
+    else
+      puts "purchase more tokens"
+    end
+
     respond_to do |format|
-      if @engineer.update(engineer_params)
+      if @engineer.update(:tokens => engineerTokens)
         format.html { redirect_to [@engineer.rentee, @engineer], notice: 'Engineer was successfully updated.' }
         format.json { render :show, status: :ok, location: @engineer }
       else
