@@ -1,10 +1,17 @@
-<h1>Listing engineers</h1>
+<h1><strong><%= @rentee.name %></strong></h1>
 
-<h3>Company name: <%= @rentee.name %></h3>
+
+
+
+<h1>Listing engineers</h1>
 
 <h4 data-renteetokens="<%= @rentee.tokens%>"> Total Tokens: <%= @rentee.tokens%></h4>
 
-<table class="table table-striped table-hover ">
+<% if flash[:alert] %>
+  <div class="text-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<table class="table table-striped table-hover table-responsive">
   <thead>
     <tr>
       <th>Name</th>
@@ -23,7 +30,7 @@
         <td><%= engineer.tokens %></td>
         <td>
           <%= form_for([engineer.rentee, engineer], method: "patch") do |f| %>
-            <%= f.number_field(:tokens, min:0) %>
+            <%= f.number_field(:tokens, min:0,  value:nil) %>
             <%= f.submit("add token") %>
           <% end %>
         </td>

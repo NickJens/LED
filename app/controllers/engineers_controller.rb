@@ -55,6 +55,9 @@ class EngineersController < ApplicationController
     engineerId = params[:id]
     renteeId = params[:rentee_id]
     engineerTokens = Engineer.find(engineerId).tokens
+    if engineerTokens == nil
+      engineerTokens = 0
+    end
     renteeTokens = Rentee.find(renteeId).tokens
 
     if numTokens <= renteeTokens
@@ -63,15 +66,12 @@ class EngineersController < ApplicationController
       engineerTokens = engineerTokens + numTokens
 
     else
-      puts "purchase more tokens"
-      puts "===================="
-      puts = "Not enough tokens. Please purchase more tokens"
-      puts "===================="
+      flash[:alert] = "Not enough tokens. Please purchase more tokens"
     end
 
     respond_to do |format|
       if @engineer.update(:tokens => engineerTokens)
-        format.html { redirect_to [@engineer.rentee, @engineer], notice: 'Engineer was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Engineer was successfully updated.' }
         format.json { render :show, status: :ok, location: [@engineer.rentee, @engineer] }
       else
         format.html { render :edit }

@@ -1,13 +1,4 @@
-<h1>Listing rentees</h1>
-
-  <% if isAdmin? %>
-      <h1>I'm Admin!</h1>
-  <% else %>
-      <h1>I'm User only!</h1>
-  <% end %>
-
-
-
+<h1>Listing Rental Companies</h1>
 
 <br>
 <table class="table table-striped table-hover ">
@@ -36,12 +27,8 @@
   </tbody>
 </table>
 
-
 <br>
-
-
 
 <% if isAdmin? %>
 <%= link_to 'New Rentee', new_rentee_path %>
 <% end %>
-

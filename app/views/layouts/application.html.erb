@@ -16,10 +16,9 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">LOGO</a>
+    <a class="navbar-brand" href="/"><strong>LOGO</strong></a>
   </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-
 
     <ul class="nav navbar-nav navbar-right">
     <% if user_signed_in? %>
@@ -37,19 +36,23 @@
 </div>
 
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
   <div>
     <% if isAdmin? %>
-      <h3>Logged in as Admin.</h3>
+      <h4>Logged in as Admin.</h4>
     <% end %>
 
   <%= yield %>
 
   </div>
-
 </div>
 
 </body>
+
+<footer>
+  <div class="footer">
+    <p>© </p>
+    <p class="copyright"></a></p>
+  </div>
+</footer>
 </html>
