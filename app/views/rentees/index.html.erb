@@ -18,7 +18,7 @@
         <td><%= rentee.name %></td>
         <td><%= rentee.phone %></td>
         <td><%= rentee.address %></td>
-        <td><%= rentee.tokens %></td>
+        <td><p class="text-info"><%= rentee.tokens %></p></td>
         <td><%= link_to 'Show', rentee %></td>
         <td><%= link_to 'Edit', edit_rentee_path(rentee) %></td>
         <td><%= link_to 'Destroy', rentee, method: :delete, data: { confirm: 'Are you sure?' } %></td>

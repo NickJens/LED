@@ -1,11 +1,12 @@
-<h1><strong><%= @rentee.name %></strong></h1>
 
+<div class = "engineers-back">
+<h1><strong> <%= @rentee.name %> </strong></h1>
 
+<h4 data-renteetokens="<%= @rentee.tokens%>"><span class="label label-danger">Total Tokens: <%= @rentee.tokens%></span></h4>
 
+<div class = "engineers-back">
 
-<h1>Listing engineers</h1>
-
-<h4 data-renteetokens="<%= @rentee.tokens%>"> Total Tokens: <%= @rentee.tokens%></h4>
+<h5>Listing available engineers:</h5>
 
 <% if flash[:alert] %>
   <div class="text-danger"><%= flash[:alert] %></div>
@@ -25,12 +26,12 @@
   <tbody>
     <% @engineers.each do |engineer| %>
       <tr class="token" data-id="<%= engineer.id%>" data-token="<%= engineer.tokens%>">
-        <td><%= engineer.name %></td>
+        <td><p class="text-info"><%= engineer.name %> </p></td>
         <td><%= engineer.phone %></td>
-        <td><%= engineer.tokens %></td>
+        <td><p class="text-info"><%= engineer.tokens %></p></td>
         <td>
           <%= form_for([engineer.rentee, engineer], method: "patch") do |f| %>
-            <%= f.number_field(:tokens, min:0,  value:nil) %>
+            <%= f.number_field(:tokens, min:0, value:nil) %>
             <%= f.submit("add token") %>
           <% end %>
         </td>
@@ -43,3 +44,4 @@
 <br>
 
 <%= link_to 'New Engineer', new_rentee_engineer_path %>
+</div>
