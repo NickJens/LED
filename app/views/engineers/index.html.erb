@@ -2,7 +2,7 @@
 
 <h3>Company name: <%= @rentee.name %></h3>
 
-<h4> Total Tokens: <%= @rentee.tokens%></h4>
+<h4 data-renteetokens="<%= @rentee.tokens%>"> Total Tokens: <%= @rentee.tokens%></h4>
 
 <table class="table table-striped table-hover ">
   <thead>
@@ -17,16 +17,17 @@
 
   <tbody>
     <% @engineers.each do |engineer| %>
-      <tr data-name ="<%= engineer.id %>">
+      <tr class="token" data-id="<%= engineer.id%>" data-token="<%= engineer.tokens%>">
         <td><%= engineer.name %></td>
         <td><%= engineer.phone %></td>
         <td><%= engineer.tokens %></td>
-
-
-        <td><form method="update"><input type="number" max="10000" min="0"><input type="submit" value="Add Token(s)">
-        </form></td>
+        <td>
+          <%= form_for([engineer.rentee, engineer], method: "patch") do |f| %>
+            <%= f.number_field(:tokens, min:0) %>
+            <%= f.submit("add token") %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', rentee_engineer_path(engineer.rentee, engineer) %></td>
-
       </tr>
     <% end %>
   </tbody>
