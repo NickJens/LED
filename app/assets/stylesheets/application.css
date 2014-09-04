@@ -6382,3 +6382,30 @@ label,
    margin-top: 150px;
 
 }
+
+.actions{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.data-renteetokens{
+  padding: 20px;
+}
+
+.engineer-back{
+  background-color: #3b5672;
+  opacity: 0.9;
+}
+
+.commit{
+  margin-top: 15px;
+}
+
+.foot{
+  width: 100%;
+  position: fixed; bottom: 0 !important;
+  margin-bottom: 0px;
+  height: 50px;
+  background-color: white ;
+  display: block;
+}
