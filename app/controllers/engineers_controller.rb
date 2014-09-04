@@ -50,15 +50,10 @@ class EngineersController < ApplicationController
   # PATCH/PUT /engineers/1.json
   def update
     numTokens = params[:engineer][:tokens].to_i
-    puts "NUMBER OF TOKENS"
-    puts numTokens
     engineerId = params[:id]
     renteeId = params[:rentee_id]
     engineerTokens = Engineer.find(engineerId).tokens
-
     renteeTokens = Rentee.find(renteeId).tokens
-    puts "RENTEE TOKENS"
-    puts renteeTokens
 
     if numTokens <= renteeTokens
       renteeTokens = renteeTokens - numTokens
@@ -67,6 +62,9 @@ class EngineersController < ApplicationController
 
     else
       puts "purchase more tokens"
+      puts "===================="
+      puts = "Not enough tokens. Please purchase more tokens"
+      puts "===================="
     end
 
     respond_to do |format|

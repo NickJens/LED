@@ -23,12 +23,11 @@
         <td><%= engineer.tokens %></td>
         <td>
           <%= form_for([engineer.rentee, engineer], method: "patch") do |f| %>
-            <%= f.number_field(:tokens, min:0 ) %>
+            <%= f.number_field(:tokens, min:0) %>
             <%= f.submit("add token") %>
           <% end %>
         </td>
         <td><%= link_to 'Show', rentee_engineer_path(engineer.rentee, engineer) %></td>
-
       </tr>
     <% end %>
   </tbody>
